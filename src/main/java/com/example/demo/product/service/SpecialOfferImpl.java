@@ -40,7 +40,7 @@ public class SpecialOfferImpl implements SpecialOfferService{
 			SpecialOffer newOffer = new SpecialOffer();
 			newOffer.setProduct(product);
 			
-			if(offer.getSpecialDescription().isEmpty() || offer.getSpecialDescription().isBlank()) {
+			if(offer.getSpecialDescription().isEmpty() || offer.getSpecialDescription().isEmpty()) {
 				newOffer.setSpecialDescription(null);
 			} else {
 				
