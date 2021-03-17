@@ -56,7 +56,7 @@ public class SpecialOfferImpl implements SpecialOfferService{
 			productRepository.save(oldOffer);
 			existingOffer.setProduct(product);
 			
-			if(offer.getSpecialDescription().isEmpty() || offer.getSpecialDescription().isBlank()) {
+			if(offer.getSpecialDescription().isEmpty() || offer.getSpecialDescription().isEmpty()) {
 				existingOffer.setSpecialDescription(null);
 			} else {
 				
