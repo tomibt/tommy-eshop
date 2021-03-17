@@ -1,0 +1,26 @@
+<div class="container adminbar" th:fragment="adminnav" id="adminnav">
+
+    <nav>
+        <div class="logo">
+            <img th:src="@{/images/adminlogo.png}" alt="">
+        </div>
+        <input type="checkbox" id="click">
+        <label for="click" class="menu-btn">
+            <i class="fa fa-bars"></i>
+        </label>
+        <ul>
+            <li ><a th:class="${activePage == 'adminpanel'} ? 'active' : ''" th:href="@{/adminpanel}"><i class="fa fa-home" aria-hidden="true"></i>
+                Home</a></li>
+            <li><a  th:class="${activePage == 'siteinfo'} ? 'active' : ''" th:href="@{/siteinfo}"><i class="fa fa-cog" aria-hidden="true"></i>
+                    Preferences</a></li>
+            <li><a  th:class="${activePage == 'users'} ? 'active' : ''" th:href="@{/manageUsers}"><i class="fa fa-user" aria-hidden="true"></i>
+                Users</a></li>
+            <li><a  th:class="${activePage == 'productManagment'} ? 'active' : ''" th:href="@{/productmanagment}"><i class="fa fa-gift" aria-hidden="true"></i>
+                Products</a></li>
+                <li><a  th:class="${activePage == 'orderManagment'} ? 'active' : ''" th:href="@{/ordersmanagment}"><i class="fa fa-usd" aria-hidden="true"></i>
+                    Orders</a></li>
+            <li><a th:href="@{/}">EShop</a></li>
+        </ul>
+    </nav>
+
+</div>

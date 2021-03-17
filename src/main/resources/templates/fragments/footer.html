@@ -1,0 +1,40 @@
+<div class="footer" th:fragment="footer" id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download our app</h3>
+                <p>Download app for android and ios mobile phone.</p>
+                <div class="app-logo">
+                    <img src="../../static/images/googleplaylogo.png" th:src="@{/images/googleplaylogo.png}" alt=""/>
+                    <img src="../../static/images/iphoneappstore.png" th:src="@{/images/iphoneappstore.png}"  alt=""/>
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <img src="../../static/images/shoplogo.jpg" th:src="@{/images/shoplogo.jpg}" alt=""/>
+                <p>Our purpose is to sustainably make the pleasure and
+                    benefits of electronics accessible to many.
+                </p>
+            </div>
+            <div class="footer-col-3">
+                <h3>Follow us</h3>
+                
+                    <p>Terms of use</p>
+                    <p> <a th:href="@{/aboutus}">About us</a></p>
+                    <p><a th:href="@{/contact}">Contact</a></p>
+                    <p><a th:href="@{/allproducts}">Shop now!</a></p></p>
+                
+            </div>
+            <div class="footer-col-4">
+                <h3>Follow us</h3>
+                
+                    <p ><a id="footerfb" th:href="${si.fb}" target="_blank"><i class="fa fa-facebook-official"></i>Facebook</a></p>
+                    <p ><a id="footertwitter" th:href="${si.twitter}" target="_blank"><i class="fa fa-twitter"></i>Twitter</a></p>
+                    <p ><a id="footerig" th:href="${si.ig}" target="_blank"><i class="fa fa-instagram"></i>Instagram</a></p>
+                    <p ><a id="footeryt" th:href="${si.youtube}" target="_blank"><i class="fa fa-youtube-play"></i>YouTube</a></p>
+                
+            </div>
+        </div>
+    </div>
+    <hr>
+    <p class="copyright">Made with <i class="fa fa-heart-o"></fa-heart-o></i> by Tommy</p>
+</div>

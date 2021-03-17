@@ -1,0 +1,93 @@
+<!DOCTYPE >
+<html lang="en" html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/static/css/style.css" th:href="@{css/style.css}">
+    <link rel="stylesheet" href="/static/css/navbar.css" th:href="@{css/navbar.css}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>    
+        <div class="container">
+            <div th:replace="~{fragments/navibar::navibar}"></div>
+        </div>
+        
+
+        <!-- -----Cart Items Details -->
+        <div class="small-container cart-page">
+            <h2 th:if="${#lists.isEmpty(cartItemsList)}">Your shopping cart is empty</h2>
+            <a th:if="${#lists.isEmpty(cartItemsList)}" th:href="@{/allproducts}">Click here to add products</a>
+            <form th:if="${!#lists.isEmpty(cartItemsList)}" th:action="@{/deleteAllItems}" method="POST">
+                <button type="submit" class="btn"><i class="fa fa-times" aria-hidden="true"></i>
+                    Clear Cart</button>
+            </form>
+            <table th:if="${!#lists.isEmpty(cartItemsList)}">
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+                <tr th:each="list : ${cartItemsList}">
+                    <td>
+                        <div class="cart-info">
+                            <img th:src="*{'data:image/png;base64,'+ {list.product.image}}"/>
+                            <div>
+                                <p th:text="${list.product.name}">Samsung s10+</p>
+                                <small th:text="${list.product.price + '&#8364'}">Price: $50</small>
+                                <br/>
+                                <form id="RemoveOneFromSP" th:action="@{/deleteOneItem/{id} (id=${list.id})}" method="POST"></form>
+                                <button form="RemoveOneFromSP" type="submit" class=""> Remove</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <form th:action="@{/changeQuantity/{id} (id=${list.id})}" th:object="${request}" method="POST" >
+                            <input type="number" th:name="quantity" th:value="${list.quantity}" min="1"/>
+                            <p class="errormsg" if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">error</p>
+                            <button type="submit"><i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </td>
+                    <td th:text="${list.getTotalCost}">50$</td>
+                </tr>
+
+                
+            </table>
+
+
+            <div class="total-price" th:if="${!#lists.isEmpty(cartItemsList)}">
+                <table>
+                    <tr>
+                        <td>Total</td>
+                        <td th:text="${productTotalCost} + '&#8364'">235$</td>
+                    </tr>
+                </table>
+            </div>
+            <!-- <div class="pay-now">
+                <a th:href="@{/paymentdetails}" class="btn">Pay Now</a>
+
+            </div> -->
+            <div class="pay-now" th:if="${!#lists.isEmpty(cartItemsList)}">
+                <a th:href="@{/paymentdetails}" class="btn">Pay Now</a>
+                
+                </form>
+
+            </div>
+        </div>
+
+
+
+
+
+    <!-- footer -->
+
+    <div th:replace="~{fragments/footer::footer}"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="../../static/css/gazda.css" th:href="@{/css/gazda.css}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+
+    <!-- Nav bar TOP -->
+
+    <div th:replace="~{fragments/adminnav::adminnav}"></div>
+
+
+
+
+
+        <!-- content -->
+        <div class="small-container">
+            <h2>Welcome to your admin panel</h2>
+
+            <div class="row">
+                <div class="col-222 adminpanel-table">
+                    <h3 th:unless="${#lists.isEmpty(top5users)}">Last registered users</h3>
+                    <h3 th:text=${nousers}></h3>
+                    <table th:unless="${#lists.isEmpty(top5users)}">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Profile Pic
+                                </th>
+                                <th>
+                                    Username
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="user : ${top5users}">
+                                <td th:if="${user.image != null}"><img th:src="*{'data:image/png;base64,'+ {user.image}}"/></td>
+                                <td th:if="${user.image == null}" ><img th:src="@{/images/userprofileimg.png}" src="../../static/images/userprofileimg.png" alt="profileimg"></td>
+                                <td th:text="${user.username}"></td>
+                                <td th:text="${user.email}"></td>
+            
+                            </tr>
+                        </tbody>
+            
+                    </table>
+                </div>
+
+                <div class="col-233 adminpanel-table">
+                    <h3 th:unless="${#lists.isEmpty(top5orders)}">Last orders</h3>
+                    <h3 th:text=${noorders}></h3>
+
+                    <table th:unless="${#lists.isEmpty(top5orders)}">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #Order ID
+                                </th>
+                                <th>
+                                    Buyer
+                                </th>
+                                <th>
+                                    Total Price
+                                </th>
+            
+                                <th>
+                                    Details
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="order : ${top5orders}">
+                                <td th:text="${'# ' + order.id}"></td>
+                                <td th:text="${order.user.username}"></td>
+                                <td th:text="${order.orderTotalAmount + '&#8364'}"></td>
+                                <td ><a th:href="@{/ordersmanagment/details/{id} (id=${order.id})}" class="btn details-btn">Details</a></td>
+            
+                            </tr>
+                        </tbody>
+            
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-222 adminpanel-table">
+                    <h3 th:unless="${#lists.isEmpty(top5stock)}">Products running out of stock</h3>
+                    <h3 th:text=${nostock}></h3>
+                    <table th:unless="${#lists.isEmpty(top5stock)}">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Product
+                                </th>
+                                <th>
+                                    Stock
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="stock : ${top5stock}">
+                                <td th:text="${stock.product.name}"></td>
+                                <td th:text="${stock.quantity}"></td>
+                                <td><a th:href="@{/addStock/{id}(id=${stock.product.id}) }" class="btn btn-edit-green stock-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    Add</a></td>
+            
+                            </tr>
+                        </tbody>
+            
+                    </table>
+                </div>
+
+
+                <div class="col-233 adminpanel-table">
+                    <h3 th:if="${topproduct != null}">Top selling product</h3>
+
+                    <h3 th:if="${topproduct == null}" th:text="${noproduct}"></h3>
+
+                    <div class="topsellling-product" th:if="${topproduct != null}">
+                        <div class="topselling-product-img">
+                            <a th:href="@{/allproducts/product/{id} (id=${topproduct.id})}"><img th:src="*{'data:image/png;base64,'+ {topproduct.image}}"/></a>
+                        </div>
+                        <div class="topselling-product-info">
+                            <a th:href="@{/allproducts/product/{id} (id=${topproduct.id})}"><p th:text=${topproduct.name}></p></a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

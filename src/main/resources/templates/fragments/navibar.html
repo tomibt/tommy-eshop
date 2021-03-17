@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="/static/css/navbar.css" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+    
+
+    <div class="navbar" th:fragment="navibar" id="navibar">
+
+        <nav>
+            <div class="logo"><a th:href="@{/}">ECommerce<span>Shop</span></a></div>
+            <input type="checkbox" id="click">
+            <label for="click" class="menu-btn">
+                <i class="fa fa-bars"></i>
+            </label>
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li ><a th:href="@{/allproducts}">Products</a></li>
+                <li><a th:href="@{/about}">About</a></li>
+                <li><a th:href="@{/contact}">Contact</a></li>
+                <li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">Login</a></li>
+                <li sec:authorize="!isAuthenticated()"><a th:href="@{/register}">Register</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/profile}">Profile</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/shoppingcart}"><img th:src="@{/images/icons8-shopping-cart-100.png}"
+                    width="30px" height="30px" /></a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/adminpanel}"><i class="fa fa-cog" aria-hidden="true"></i>Admin Panel</a></li>
+            </ul>
+        </nav>
+
+       
+    </div>
+
+
+
+
+    <!-- Nav bar TOP -->
+    <!-- <nav>
+        <div class="logo"><a th:href="@{/}">ECommerce<span>Shop</span></a></div>
+        <input type="checkbox" id="click">
+        <label for="click" class="menu-btn">
+            <i class="fa fa-bars"></i>
+        </label>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a th:href="@{/about}">About</a></li>
+                <li><a th:href="@{/contact}">Contact</a></li>
+                <li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">Login</a></li>
+                <li sec:authorize="!isAuthenticated()"><a th:href="@{/register}">Register</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/profile}">Profile</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+                <li><a><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                </li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/adminpanel}"><i class="fa fa-cog" aria-hidden="true"></i>Admin Panel</a></li>
+        </ul>
+    </nav> -->
+
+    
+
+</body>
+</html>

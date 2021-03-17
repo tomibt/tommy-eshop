@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css" th:href="@{css/style.css}">
+</head>
+<body>
+    
+    <div class="navbar" th:fragment="navigation" id="navigation">
+
+        <div class="logo"><a th:href="@{/}">ECommerce<span>Shop</span></a></div>
+        <nav>
+            <ul id="MenuItems" class="section collapsible">
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a th:href="@{/about}">About</a></li>
+                <li><a th:href="@{/contact}">Contact</a></li>
+                <li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">Login</a></li>
+                <li sec:authorize="!isAuthenticated()"><a th:href="@{/register}">Register</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/profile}">Profile</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/adminpanel}"><i class="fa fa-cog" aria-hidden="true"></i>Admin Panel</a></li>
+            </ul>
+        </nav>
+        <img src="../../static/images/icons8-shopping-cart-100.png" th:src="@{images/icons8-shopping-cart-100.png}"
+            width="30px" height="30px" />
+        <img id="ImgBtn" src="../../static/images/collapsedmenuicon.png" th:src="@{images/collapsedmenuicon.png}" class="menu-icon"
+            />
+    </div>
+    
+
+ <script src="../static/js/script.js" th:src="@{js/script.js}" type="text/javascript"></script>
+</body>
+</html>

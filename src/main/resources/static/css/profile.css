@@ -1,0 +1,289 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+/* navbar */
+
+.mynavbar {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+mynav {
+    flex: 1;
+    text-align: right;
+}
+
+mynav ul{
+    display: inline-block;
+    list-style-type: none;
+}
+mynav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.mynavbar .mylogo a {
+    color: rgb(5, 5, 5);
+    font-size: 35px;
+    font-weight: 600;
+
+}
+.mynavbar .mylogo a:hover{
+    text-decoration: none;
+}
+
+.mynavbar .mylogo a span {
+    color: #ff523b;
+}
+
+.menu-icon {
+    width: 28px;
+    margin-left: 20px;
+    display: none;
+}
+
+#alink {
+    text-decoration: none;
+    color: white;
+    margin-left: 50px;
+}
+
+.anav {
+    color: #555;
+}
+
+
+p {
+    color: #555;
+}
+
+.mycontainer{
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.myrow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content:  center;
+}
+
+
+.mybtn {
+    display: inline-block;
+    align-items: center;
+    background: #ff523b;
+    color: white;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 30px;
+    transition: background 0.5s;
+    align-items: center;
+}
+
+.mybtn:hover {
+    background: #563434;
+}
+
+/* footer */
+
+.myfooter {
+    background: #000;
+    color: 38a8a8a;
+    font-size: 14px;
+    padding: 60px 0 20px;
+}
+
+.myfooter .mycontainer {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.myfooter p{
+    color: #8a8a8a;
+}
+
+.myfooter h3{
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.myfooter-col-1, .myfooter-col-2, .myfooter-col-3, .myfooter-col-4{
+    min-width: 250px;
+    margin-bottom: 20px;
+    padding-left: 80px;
+}
+
+.myfooter-col-1 {
+    flex-basis: 27%;
+    text-align: center;
+}
+.myfooter-col-2 {
+    flex-basis: 27%;
+    text-align: center;
+    margin-right: 50px;
+}
+.myfooter-col-2 img{
+    width: 180px;
+    margin-bottom: 20px;
+}
+
+.myfooter-col-3{
+    flex-basis: 15%;
+    margin-left: 15px;
+}
+
+.myfooter-col-4 {
+    flex-basis: 15%;
+    text-align: center;
+}
+ul{
+    list-style-type: none;
+}
+
+.myfooter-col-4 p{
+    color: #8a8a8a;
+    text-align:center;
+    padding-top: 2px;
+}
+
+#footerfb {
+    color: #0278c7;
+}
+
+#footeryt{
+    color: rgb(230, 39, 39);
+}
+
+#footertwitter {
+    color: #1da1f2;
+}
+
+#footerig{
+    color: rgb(255, 195, 85);
+}
+
+.app-logo img{
+    width: 150px;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 15px;
+    padding-bottom: 0px;
+    background-color: #000;
+}
+
+.fa-heart-o {
+    color: red;
+    font-size: 15px;
+}
+
+.myfooter hr {
+    margin-top: 10px;
+    background-color: #ccc;
+}
+
+.myfooter .myrow .fa {
+    padding-right: 10px;
+}
+
+.menu-icon {
+    width: 28px;
+    margin-left: 20px;
+    display: none;
+}
+
+
+/* -----media query for menu---------- */
+
+@media only screen and (max-width:1340px){
+    .footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4 {
+        padding-left: 40px;
+        flex-basis: 40%;
+    }
+}
+
+@media only screen and (max-width: 849px) {
+
+    mynav ul{
+        position:  absolute;
+        top: 70px;
+        left: 0;
+        background: #333;
+        width: 100%;
+        overflow: hidden;
+        transform: max-height 0.5;
+    }
+
+    mynav ul li {
+        display: block;
+        margin-right: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    mynav ul li a {
+        color: #fff;
+
+    }
+    
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+    }
+}
+    
+
+    @media only screen and (max-width: 600px) {
+
+        .row {
+            text-align: center;
+        }
+
+        .col-2, .col-3, .col-4 {
+            flex-basis: 100%;
+            max-width: 300px;
+        }
+
+        .single-product .row{
+            text-align: left;
+        }
+
+        .single-product .col-2{
+            padding: 20px 0;
+            flex-basis: 100%;
+        }
+
+        .single-product h1 {
+            font-size: 26px;
+            line-height: 22px;
+        }
+
+        .footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4 {
+            padding-left: 40px;
+            flex-basis: 100%;
+        }
+
+        .cart-info p{
+            display: none;
+        }
+
+    }
+
+    @media only screen and (max-width: 450px) {
+
+        .logo {
+            overflow: hidden;
+        }
+    }

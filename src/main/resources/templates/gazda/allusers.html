@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User managment</title>
+    <link rel="stylesheet" th:href="@{/css/gazda.css}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/adminnav::adminnav}"></div>
+
+
+
+
+
+
+
+    <div class="sidenav">
+        <a th:href="@{/manageUsers}">All users</a>
+        <a th:href="@{/lastregistered}">Last registered</a>
+
+    </div>
+
+
+
+
+    <!-- content -->
+    <div class="main allusers">
+        <h2>All users</h2>
+
+        <div class="search-box">
+            <form th:action="@{/searchUsers}" id="SearchForm" method="GET">
+                <input type="text" class="input" th:name="search" th:value="${search}" placeholder="search..." />
+            </form>
+            <div class="btn btn_common">
+                <button form="SearchForm" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Profile Photo
+                    </th>
+                    <th>
+                        <a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
+                            First Name</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
+                            Last Name</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
+                            Email</a>
+                    </th>
+
+                    <th>
+                        <a th:href="@{'/page/' + ${currentPage} + '?sortField=username&sortDir=' + ${reverseSortDir}}">
+                            Username</a>
+                    </th>
+
+                    <th>
+                        <a th:href="@{'/page/' + ${currentPage} + '?sortField=date&sortDir=' + ${reverseSortDir}}">
+                            Date joined</a>
+                    </th>
+                    <th>
+                        Mobile
+                    </th>
+
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:if="${user.image != null}" ><img th:src="*{'data:image/png;base64,'+ {user.image}}" alt="upload photo"/></td>
+                    <td th:if="${user.image == null}" ><img th:src="@{/images/userprofileimg.png}" src="../../static/images/userprofileimg.png"  alt="upload photo"/></td>
+                    <td th:text="${user.firstName}"></td>
+                    <td th:text="${user.lastName}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${#temporals.format(user.date, 'dd-MM-yyyy HH:mm')}"></td>
+                    <td th:text="${user.mobile}"></td>
+                    <td>
+                        <a th:href="@{/deleteUser/{id}(id=${user.id}) }" class="btn btn-delete"><i class="fa fa-trash"
+                                aria-hidden="true"></i>
+                            Delete</a>
+                    </td>
+
+                </tr>
+            </tbody>
+
+        </table>
+        <div class="page-btn">
+            <span id="TotalRows">Total Rows: [[${totalItems}]] </span>
+            <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                <span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+            </span>
+            
+            <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+					<span th:unless="${currentPage < totalPages}">Next</span>
+
+            <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+					<span th:unless="${currentPage < totalPages}">Last</span>
+            
+        </div>
+        </div>
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

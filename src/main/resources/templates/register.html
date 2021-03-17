@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"  html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/static/css/style.css" th:href="@{css/style.css}">
+    <link rel="stylesheet" href="/static/css/navbar.css" th:href="@{css/navbar.css}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+        <div class="container">
+            <div th:replace="~{fragments/navibar::navibar}">
+
+            </div>
+        </div>
+
+            <div class="account-page" id="">
+
+                <div class="row">
+                    <div class="col-2 col-22">
+                        <img src="../static/images/centerlogo.png" th:src="@{/images/centerlogo.png}" alt="centerlogo"/>
+                    </div>
+                    <div class="col-2 col-23">
+                        <div class="form-container" id="RegForm">
+                            <form class="box" id="LoginForm" action="#" th:action="@{/register}" th:object="${user}" method="POST">
+                                <h1>Sign Up</h1>
+                                <p th:if="${param.error}"></p>
+                                <p th:if="${param.success}"></p>
+                                <div class="firsandlast">
+
+                                    <input type="text" th:field="*{firstName}" placeholder="First Name" autofocus/>
+                                    <p class="errormsg" if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">error</p>
+                                    <input type="text"  th:field="*{lastName}" placeholder="Last Name"/>
+                                    <p class="errormsg"  if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">error</p>
+                                </div>
+                                <input type="text" th:field="*{username}" placeholder="Username"/>
+                                <p class="errormsg"  if="${#fields.hasErrors('username')}" th:errors="*{username}">err</p>
+                                <p class="errormsg" th:text="${userExist}"></p>
+
+                                <input type="text" th:field="*{email}" placeholder="Email"/>
+                                <p class="errormsg"  if="${#fields.hasErrors('email')}" th:errors="*{email}">err</p>
+                                <p class="errormsg" th:text="${emailExist}"></p>
+
+                                <input type="password" th:field="*{password}" placeholder="Password" />
+                                <p class="errormsg"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">err</p>
+                                <input type="password" th:field="*{passwordRepeat}" placeholder="Enter your password again"/>
+                                <p class="errormsg"  th:if="${#fields.hasErrors('password')}" th:errors="*{passwordRepeat}"></p>
+                                <p class="errormsg" th:text="${passerror}"></p>
+                                <input type="submit" value="Sign up"/>
+                            </form>
+                            <h4>Already have account? <a th:href="@{/login}">Login Now!</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    
+
+    <!-- footer -->
+
+    <div class="div" th:replace="~{fragments/footer::footer}">
+
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+crossorigin="anonymous"></script>
+</body>
+</html>
