@@ -99,7 +99,7 @@ public class HomeController {
 		
 		List<User> top5users = userService.getLastUsersForAdminPage();
 		
-		if(top5users == null) {
+		if(top5users.isEmpty()) {
 			model.addAttribute("nousers", "No registered users.");
 		} else {
 			
@@ -108,7 +108,7 @@ public class HomeController {
 		
 		List<Order> top5orders = orderService.getLastOrdersForAdminPage();
 		
-		if(top5orders == null) {
+		if(top5orders.isEmpty()) {
 			model.addAttribute("noorders", "No orders made yet.");
 		} else {
 			
@@ -116,7 +116,7 @@ public class HomeController {
 		}
 		
 		List<Stock> top5stock = stockService.getTopStockForAdminPage();
-		if(top5stock == null) {
+		if(top5stock.isEmpty()) {
 			model.addAttribute("nostock", "No products added to your store.");
 		} else {
 			

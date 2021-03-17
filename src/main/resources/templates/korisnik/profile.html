@@ -60,6 +60,7 @@
                             <p>Name: <span th:text="*{firstName}"></span></p>
                             <p>Lastname: <span th:text="*{lastName}"></span></p>
                             <p>Email: <span th:text="*{email}"></span></p>
+                            <p th:if="*{mobile == null}">Mobile: <span>N/A</span></p>
                             <p th:if="*{mobile != null}">Mobile: <span th:text="*{mobile}"></span></p>
 
                         </div>
