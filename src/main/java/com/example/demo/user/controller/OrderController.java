@@ -25,6 +25,7 @@ import com.example.demo.user.entity.CartProduct;
 import com.example.demo.user.entity.CreditCard;
 import com.example.demo.user.entity.Order;
 import com.example.demo.user.entity.User;
+import com.example.demo.user.repository.OrderRepository;
 import com.example.demo.user.repository.UserRepository;
 import com.example.demo.user.service.CartProductService;
 import com.example.demo.user.service.OrderService;
@@ -228,7 +229,7 @@ public class OrderController {
 
 		User user = userRepo.findByUsernameOrEmailIgnoreCase(userName, userName).get();
 		
-		List<Order> listOrders = user.getOrders();
+		List<Order> listOrders = orderService.getOrdersForUserByDateDesc(user);
 		
 		
 		model.addAttribute("listOrders", listOrders);

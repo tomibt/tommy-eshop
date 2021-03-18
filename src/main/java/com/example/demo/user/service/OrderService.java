@@ -51,5 +51,7 @@ public interface OrderService {
 	List<Order> getLast2Orders();
 	List<Order> getLast1Orders();
 	List<Order> getLastOrdersForAdminPage();
+	
+	List<Order> getOrdersForUserByDateDesc(User user);
 
 }

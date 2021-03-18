@@ -483,4 +483,9 @@ public class OrderServiceImpl implements OrderService {
 			return topOrders;
 		}
 	}
+
+	@Override
+	public List<Order> getOrdersForUserByDateDesc(User user) {
+		return orderRepository.findByUserOrderByDateDesc(user);
+	}
 }

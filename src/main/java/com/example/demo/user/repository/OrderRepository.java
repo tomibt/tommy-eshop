@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.user.entity.Order;
+import com.example.demo.user.entity.User;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
@@ -23,4 +24,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	List<Order> findTop3ByOrderByDateDesc();
 	List<Order> findTop2ByOrderByDateDesc();
 	List<Order> findTop1ByOrderByDateDesc();
+	
+	List<Order> findByUserOrderByDateDesc(User user);
 }
