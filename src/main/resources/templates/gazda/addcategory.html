@@ -40,7 +40,7 @@
                 
                 <div class="col-111">
 
-                    <label for="name">Brand Name </label>
+                    <label for="name">Category Name </label>
                     <input type="text" th:field="*{name}"  autofocus />
                     <p class="errormsg" if="${#fields.hasErrors('name')}" th:errors="*{name}">error</p>
                     <p class="errormsg" th:text="${categoryNameExist}"></p>
